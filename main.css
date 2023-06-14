@@ -1,0 +1,43 @@
+body{
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(#faf0cd, #ffcdb9);
+}
+.main{
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+    border: 1px groove black;
+}
+.header{
+    float: top;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+    color: black;
+    border-bottom: 1px groove black;
+}
+
+.footer{
+    clear: both;
+    font-size: small;
+    text-align: right;
+    padding-top: 10px;
+    border-top: 1px groove black;
+}
+
+.content{
+    float: right;
+    padding: 10px;
+    width: calc(100% - 244px);
+    /*border: 1px dotted blue;*/
+}
+
+.menu{
+    float: left;
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+    border-right: 1px groove black;
+}

@@ -1,10 +1,11 @@
 body{
+    font-family: "Open Sans", sans-serif;
     padding: 0;
     margin: 0;
     background: linear-gradient(#faf0cd, #ffcdb9);
 }
 .main{
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
     background-color: white;
     border: 1px groove black;
@@ -30,14 +31,100 @@ body{
 .content{
     float: right;
     padding: 10px;
-    width: calc(100% - 244px);
+    width: calc(100% - 233px);
     /*border: 1px dotted blue;*/
+}
+
+.content2{
+    float: bottom;
+    padding: 5px;
 }
 
 .menu{
     float: left;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     width: 200px;
     border-right: 1px groove black;
+}
+
+.menuitem{
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #eeeeee;
+    color: #064579;
+    font-weight: bold;
+}
+
+a.l_menuitem{
+    color: #2196F3;
+    text-decoration: none;
+    font-weight: normal;
+}
+a.l_menuitem:hover{
+    color: #064579;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 15px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.registerbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    margin: 5px 0;
+    border: none;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.registerbtn:hover {
+    opacity: 1;
+}
+
+.signin {
+    text-align: center;
+}
+
+.signin a{
+    text-align: center;
+    color: #2196F3;
+}
+
+.signin a:hover{
+    text-align: center;
+    color: #064579;
+}
+
+.error {
+    color: #ba3939;
+    background: #ffe0e0;
+    text-align: center;
+    width: 50%;
+    padding: 10px;
+    margin: 0 auto;
+    font-size: large;
+    font-weight: bold;
+    border: 1px solid #a33a3a;
 }

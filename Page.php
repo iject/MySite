@@ -1,8 +1,34 @@
 <?php
 
+require_once "DbHelper.php";
 
 abstract class Page
 {
+    private $dbh;
+
+    public function __construct()
+    {
+        session_start();
+        $this->dbh = DbHelper::getInstance("localhost", 3306, "root", "");
+        if ($this->dbh->isSecure($this->getUrl()))
+        {
+            if (!isset($_SESSION['login']))
+            {
+                $_SESSION['requested_page'] = $_SERVER['REQUEST_URI'];
+                header("Location: /PHPsite/auth.php");
+            }
+        }
+    }
+
+    // Для регистрации и входа
+    public function show_table()
+    {
+        print "<html lang = 'ru'>";
+        $this->createHeading();
+        $this->createBodyTable();
+        print "</html>";
+    }
+
     public function show()
     {
         print "<html lang = 'ru'>";
@@ -41,6 +67,23 @@ abstract class Page
         print "</body>";
     }
 
+    private function createBodyTable()
+    {
+        print "<body>";
+        print "<div class='main'>";
+
+        $this->showHeader();
+
+        print "<div class='content2'>";
+        $this->showContent();
+        print "</div>";
+
+        $this->showFooter();
+
+        print "</div>";
+        print "</body>";
+    }
+
     protected abstract function showContent();
 
     private function showHeader()
@@ -54,8 +97,8 @@ abstract class Page
 
     private function showMenu()
     {
-        print "<div class='menu'>Тут будет меню";
-        /*$pages_info = $this->dbh->getPagesInfo();
+        print "<div class='menu'>";
+        $pages_info = $this->dbh->getPagesInfo();
         foreach ($pages_info as $index => $page_info)
         {
             $curr_page = (($page_info['url'] === $this->getUrl()) || ($page_info['alias'] === $this->getUrl()));
@@ -65,7 +108,7 @@ abstract class Page
             print $page_info['name'];
             if (!$curr_page) print "</a>";
             print "</div>";
-        }*/
+        }
         print "</div>";
 
     }
@@ -73,23 +116,24 @@ abstract class Page
     private function showFooter()
     {
         print "<div class='footer'>(づ｡◕‿‿◕｡)づ";
-//        if (isset($_SESSION['login']))
-//        {
-//            print "<br><a href='/27.04.23/auth.php?exit=1'>Выход</a>";
-//        }
+        if (isset($_SESSION['login']))
+        {
+            print "<br><div class='signin'>
+                   <a href='/PHPsite/auth.php?exit=1'>Выход</a>
+                   </div>";
+        }
         print "</div>";
     }
 
     private function getTitle() : string
     {
-        //return $this->dbh->getTitle($this->getUrl());
-        return "Тут будет заголовок";
+        return $this->dbh->getTitle($this->getUrl());
     }
 
     private function getUrl(): string
     {
         // Заменил mb_split на explode, и лимит увеличил с 1 до 2
-        return explode("?", $_SERVER['REQUEST_URI'], 2)[0] ;
+        return explode("?", $_SERVER['REQUEST_URI'], 2)[0];
     }
 
 

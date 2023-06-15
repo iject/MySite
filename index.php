@@ -2,7 +2,6 @@
 
 require_once "Page.php";
 
-
 class index extends Page
 {
     protected function showContent()
